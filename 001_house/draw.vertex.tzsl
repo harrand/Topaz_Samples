@@ -1,0 +1,33 @@
+#pragma shader_stage(vertex)
+
+struct TriangleVertexData
+{
+	vec3 position;
+	vec2 texcoord;
+	vec3 normal;
+	vec3 tangent;
+	vec3 bitangent;
+};
+
+resource(id = 0) buffer VertexData
+{
+	TriangleVertexData[] vertices;
+} vertex_data;
+
+layout(location = 0) out vec2 texcoord;
+layout(location = 1) out vec3 normal;
+layout(location = 2) out vec3 tangent;
+layout(location = 3) out vec3 bitangent;
+
+void main()
+{
+	TriangleVertexData vtx = vertex_data.vertices[tz_VertexID];
+	gl_Position = vec4(vtx.position, 1.0);
+	texcoord = vtx.texcoord;
+	normal = vtx.normal;
+	tangent = vtx.tangent;
+	bitangent = vtx.bitangent;
+	#if TZ_VULKAN
+		gl_Position.z = (gl_Position.z + 1.0) * 0.5;
+	#endif
+}

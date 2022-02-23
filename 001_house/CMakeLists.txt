@@ -8,3 +8,4 @@ add_demo(
 		001_house/draw.vertex.tzsl
 		001_house/draw.fragment.tzsl
 )
+target_link_libraries(001_house samplelib)

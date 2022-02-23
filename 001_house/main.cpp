@@ -26,6 +26,9 @@ int main()
 
 		tz::gl2::BufferResource world_buffer = tz::gl2::BufferResource::from_many(world_mesh);
 
+		// Now create all images upfront. We have three.
+		samplelib::ImageImportResult stone_bricks_data = game::get_image(game::ImageName::StoneBricks);
+
 		// Create renderer.
 		tz::gl2::Device dev;
 		tz::gl2::RendererInfo rinfo;

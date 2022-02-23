@@ -2,6 +2,7 @@ add_demo(
 	TARGET 001_house
 	SOURCE_FILES
 		main.cpp
+		resource.cpp
 		resource.hpp
 	SHADER_SOURCES
 		001_house/draw.vertex.tzsl

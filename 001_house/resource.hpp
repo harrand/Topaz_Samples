@@ -1,6 +1,7 @@
 #ifndef SAMPLE_001_HOUSE_RESOURCES_HPP
 #define SAMPLE_001_HOUSE_RESOURCES_HPP
 #include "core/vector.hpp"
+#include <vector>
 
 namespace game
 {
@@ -19,6 +20,8 @@ namespace game
 	};
 
 	using NaiveMesh = std::vector<TriangleVertexData>;
+
+	NaiveMesh get_world_mesh();
 }
 
 #endif // SAMPLE_001_HOUSE_RESOURCES_HPP

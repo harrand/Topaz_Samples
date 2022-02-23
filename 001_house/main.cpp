@@ -20,7 +20,7 @@ int main()
 		std::size_t triangle_count;
 		// Create mesh for game world
 		// TODO: Give it data!
-		game::NaiveMesh world_mesh;
+		game::NaiveMesh world_mesh = game::get_world_mesh();
 		const std::size_t world_size_bytes = world_mesh.size() * sizeof(game::TriangleVertexData);
 		triangle_count = world_mesh.size() / 3;
 

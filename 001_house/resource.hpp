@@ -1,6 +1,7 @@
 #ifndef SAMPLE_001_HOUSE_RESOURCES_HPP
 #define SAMPLE_001_HOUSE_RESOURCES_HPP
 #include "image_import.hpp" // samplelib
+#include "model_import.hpp" // samplelib
 #include "core/vector.hpp"
 #include <vector>
 
@@ -22,8 +23,6 @@ namespace game
 
 	using NaiveMesh = std::vector<TriangleVertexData>;
 
-	NaiveMesh get_world_mesh();
-
 	enum class ImageName
 	{
 		StoneBricks,
@@ -32,6 +31,8 @@ namespace game
 	};
 
 	samplelib::ImageImportResult get_image(ImageName name);
+
+	NaiveMesh get_world_mesh();
 }
 
 #endif // SAMPLE_001_HOUSE_RESOURCES_HPP

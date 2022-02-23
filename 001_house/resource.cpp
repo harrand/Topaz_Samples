@@ -2,10 +2,6 @@
 
 namespace game
 {
-	NaiveMesh get_world_mesh()
-	{
-		return {{}};
-	}
 
 	samplelib::ImageImportResult get_image(ImageName name)
 	{
@@ -27,5 +23,26 @@ namespace game
 
 		}
 		return samplelib::read_image(filename);
+	}
+
+	NaiveMesh get_world_mesh()
+	{
+		samplelib::Mesh mesh = samplelib::load_mesh("../../001_house/data/models/cube.obj");
+
+		NaiveMesh ret;
+		ret.resize(mesh.vertices.length());
+		std::transform(mesh.vertices.begin(), mesh.vertices.end(), ret.begin(),
+		[](const samplelib::Vertex& v) -> TriangleVertexData
+		{
+			return
+			{
+				.position = v.position,
+				.texcoord = v.texcoord,
+				.normal = v.normal,
+				.tangent = v.tangent,
+				.bitangent = v.bitangent
+			};
+		});
+		return ret;
 	}
 }

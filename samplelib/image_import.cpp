@@ -21,8 +21,8 @@ namespace samplelib
 			.format = tz::gl2::ImageFormat::RGBA32,
 			.dimensions = {static_cast<unsigned int>(w), static_cast<unsigned int>(h)},
 		};
-		res.image_data.resize(w * h * channels);
-		std::memcpy(res.image_data.data(), imgdata, w * h * channels);
+		res.image_data.resize(w * h * 4);
+		std::memcpy(res.image_data.data(), imgdata, w * h * 4);
 		stbi_image_free(imgdata);
 		return res;
 	}

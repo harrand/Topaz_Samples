@@ -5,10 +5,11 @@ layout(location = 0) in vec2 texcoord;
 layout(location = 1) in vec3 normal;
 layout(location = 2) in vec3 tangent;
 layout(location = 3) in vec3 bitangent;
+layout(location = 4) flat in uint object_id;
 
 layout(location = 0) out vec4 output_colour;
 
 void main()
 {
-	output_colour = texture(tex_sampler[0], texcoord);
+	output_colour = texture(tex_sampler[object_id], texcoord);
 }

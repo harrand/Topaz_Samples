@@ -1,5 +1,6 @@
 #include "core/peripherals/keyboard.hpp"
 #include "core/tz.hpp"
+#include "core/matrix_transform.hpp"
 #include "render.hpp"
 
 int main()
@@ -55,9 +56,6 @@ int main()
 				#if TZ_DEBUG
 					std::printf("Camera Pos: {%.2f, %.2f, %.2f} Rot: {%.2f, %.2f, %.2f}\r", cam_pos[0], cam_pos[1], cam_pos[2], cam_rot[0], cam_rot[1], cam_rot[2]);
 				#endif
-				
-				static float x = 0;
-				mutable_state.model_matrices[0] = tz::model({0.0f, 0.0f, 0.0f}, {0.0f, x += 0.005f, 0.0f}, {0.3f, 0.3f, 0.3f});
 			}
 		}
 	}

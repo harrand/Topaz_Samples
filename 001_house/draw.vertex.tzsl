@@ -7,13 +7,20 @@ struct TriangleVertexData
 	vec3 normal;
 	vec3 tangent;
 	vec3 bitangent;
+	uint object_id;
+};
+
+struct ObjectInfo
+{
+	mat4 model;
+	uint texture_id;
 };
 
 struct GameRenderInfo
 {
 	vec4 camera_pos;
 	vec4 camera_rot;
-	mat4 model_matrices[1];
+	ObjectInfo object_data[11];
 	mat4 view;
 	mat4 projection;
 };
@@ -32,12 +39,15 @@ layout(location = 0) out vec2 texcoord;
 layout(location = 1) out vec3 normal;
 layout(location = 2) out vec3 tangent;
 layout(location = 3) out vec3 bitangent;
+layout(location = 4) out uint object_id;
 
 void main()
 {
 	TriangleVertexData vtx = vertex_data.vertices[tz_VertexID];
 
-	mat4 mvp = game_data.info.projection * game_data.info.view * game_data.info.model_matrices[0];
+	ObjectInfo this_object_info = game_data.info.object_data[vtx.object_id];
+	mat4 model = this_object_info.model;
+	mat4 mvp = game_data.info.projection * game_data.info.view * model;
 
 	vec3 position_modelspace = vtx.position;
 	gl_Position = mvp * vec4(position_modelspace, 1.0);
@@ -45,6 +55,8 @@ void main()
 	normal = vtx.normal;
 	tangent = vtx.tangent;
 	bitangent = vtx.bitangent;
+	//object_id = vtx.object_id;
+	object_id = this_object_info.texture_id;
 	#if TZ_VULKAN
 		gl_Position.z = (gl_Position.z + gl_Position.w) / 2.0;
 	#endif

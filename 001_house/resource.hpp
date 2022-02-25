@@ -3,7 +3,9 @@
 #include "image_import.hpp" // samplelib
 #include "model_import.hpp" // samplelib
 #include "core/vector.hpp"
+#include "core/matrix.hpp"
 #include <vector>
+#include <array>
 
 namespace game
 {
@@ -18,7 +20,7 @@ namespace game
 		tz::Vec3 tangent;
 		float pad3;
 		tz::Vec3 bitangent;
-		float pad4;
+		std::uint32_t object_id;
 	};
 
 	using NaiveMesh = std::vector<TriangleVertexData>;
@@ -33,6 +35,15 @@ namespace game
 	samplelib::ImageImportResult get_image(ImageName name);
 
 	NaiveMesh get_world_mesh();
+
+	struct ObjectInfo
+	{
+		tz::Mat4 model;
+		std::uint32_t texture_id;
+		float pad0[3];
+	};
+
+	std::array<ObjectInfo, 11> get_object_data();
 }
 
 #endif // SAMPLE_001_HOUSE_RESOURCES_HPP

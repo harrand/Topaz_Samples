@@ -2,6 +2,8 @@ add_demo(
 	TARGET 001_house
 	SOURCE_FILES
 		main.cpp
+		render.cpp
+		render.hpp
 		resource.cpp
 		resource.hpp
 	SHADER_SOURCES

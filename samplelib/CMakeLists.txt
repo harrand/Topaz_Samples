@@ -10,6 +10,6 @@ add_library(samplelib
 	model_import.hpp
 )
 
-target_link_libraries(samplelib PRIVATE assimp stb)
+target_link_libraries(samplelib PRIVATE tinyobjloader stb)
 target_link_libraries(samplelib PUBLIC topaz)
 target_include_directories(samplelib PUBLIC .)

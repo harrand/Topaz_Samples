@@ -4,6 +4,6 @@
 [submodule "samplelib/lib/stb"]
 	path = samplelib/lib/stb
 	url = https://github.com/nothings/stb
-[submodule "samplelib/lib/assimp"]
-	path = samplelib/lib/assimp
-	url = https://github.com/assimp/assimp
+[submodule "samplelib/lib/tinyobjloader"]
+	path = samplelib/lib/tinyobjloader
+	url = https://github.com/tinyobjloader/tinyobjloader

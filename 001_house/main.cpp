@@ -11,6 +11,7 @@
 
 int main()
 {
+	// A very basic sample which draws a house in a skybox. All resources and assets are loaded upfront for simplicity.
 	tz::initialise
 	({
 		.name = "Sample 001 - House",
@@ -18,12 +19,12 @@ int main()
 	});
 	{
 		std::size_t triangle_count;
-		// Create mesh for game world
-		// TODO: Give it data!
+		// Create mesh for game world. This is just gonna be one large mesh.
 		game::NaiveMesh world_mesh = game::get_world_mesh();
 		const std::size_t world_size_bytes = world_mesh.size() * sizeof(game::TriangleVertexData);
+		// We will need to tell the renderer how many triangles to draw.
 		triangle_count = world_mesh.size() / 3;
-
+		// Create a large buffer resource for the world mesh.
 		tz::gl2::BufferResource world_buffer = tz::gl2::BufferResource::from_many(world_mesh);
 
 		// Now create all images upfront. We have three.

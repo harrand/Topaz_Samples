@@ -44,7 +44,7 @@ namespace game
 		this->rinfo.add_resource(this->wood_res);
 	}
 
-	tz::gl2::RendererInfo& RenderState::info()
+	const tz::gl2::RendererInfo& RenderState::info() const
 	{
 		return this->rinfo;
 	}

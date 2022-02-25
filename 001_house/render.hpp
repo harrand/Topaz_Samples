@@ -34,7 +34,7 @@ namespace game
 	{
 	public:
 		RenderState();
-		tz::gl2::RendererInfo& info();
+		const tz::gl2::RendererInfo& info() const;
 		std::size_t get_triangle_count() const;
 		GameRenderInfo& get_mutable_state(tz::gl2::Renderer& renderer);
 	private:

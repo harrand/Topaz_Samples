@@ -43,7 +43,7 @@ namespace game
 		float pad0[3];
 	};
 
-	std::array<ObjectInfo, 11> get_object_data();
+	std::array<ObjectInfo, 72> get_object_data();
 }
 
 #endif // SAMPLE_001_HOUSE_RESOURCES_HPP

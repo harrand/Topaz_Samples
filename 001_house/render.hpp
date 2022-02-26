@@ -18,7 +18,7 @@ namespace game
 		float pad0;
 		tz::Vec3 camera_rot = {0.0f, 1.5708f, 0.0f};
 		float pad1;
-		std::array<ObjectInfo, 11> object_data = get_object_data();
+		std::array<ObjectInfo, 72> object_data = get_object_data();
 		tz::Mat4 view_matrix = tz::Mat4::identity();
 		tz::Mat4 projection_matrix = tz::Mat4::identity();
 

@@ -57,10 +57,27 @@ namespace game
 		add_mesh("../../001_house/data/models/cube.obj", 8);
 		add_mesh("../../001_house/data/models/cube.obj", 9);
 		add_mesh("../../001_house/data/models/cube.obj", 10);
+		add_mesh("../../001_house/data/models/cube.obj", 11);
+		add_mesh("../../001_house/data/models/cube.obj", 12);
+		add_mesh("../../001_house/data/models/cube.obj", 13);
+		add_mesh("../../001_house/data/models/cube.obj", 14);
+		add_mesh("../../001_house/data/models/cylinder.obj", 15);
+		add_mesh("../../001_house/data/models/cube.obj", 16);
+		add_mesh("../../001_house/data/models/cube.obj", 17);
+		add_mesh("../../001_house/data/models/cube.obj", 18);
+		add_mesh("../../001_house/data/models/cube.obj", 19);
+		add_mesh("../../001_house/data/models/cube.obj", 20);
+		add_mesh("../../001_house/data/models/cylinder.obj", 21);
+		add_mesh("../../001_house/data/models/cylinder.obj", 22);
+		add_mesh("../../001_house/data/models/cylinder.obj", 23);
+		add_mesh("../../001_house/data/models/cylinder.obj", 24);
+		add_mesh("../../001_house/data/models/cube.obj", 25);
+		add_mesh("../../001_house/data/models/cube.obj", 26);
+		add_mesh("../../001_house/data/models/cube.obj", 27);
 		return ret;
 	}
 
-	std::array<ObjectInfo, 11> get_object_data()
+	std::array<ObjectInfo, 72> get_object_data()
 	{
 		return
 		{
@@ -118,7 +135,92 @@ namespace game
 			{
 				.model = tz::model({-2600.0f, 0.0f, -1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
 				.texture_id = 1
-			} // next is object11
+			}, // next is object11
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 0.0f, 1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 0.0f, -1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 470.0f, 1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 470.0f, -1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 900.0f, 0.0f}, {1.5708f, 0.0f, 0.0f}, {1400.0f, 1000.0f, 1400.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 1400.0f, 800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 1400.0f, -800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 1400.0f, 1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 1400.0f, -1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 1400.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 935.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {1300.0f, 450.0f, 1300.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 935.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {1300.0f, 450.0f, 1300.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2300.0f, 900.0f, 2000.0f}, {1.5708f, 1.5708f, 0.0f}, {1400.0f, 450.0f, 1400.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2300.0f, 900.0f, -2000.0f}, {1.5708f, 1.5708f, 0.0f}, {1400.0f, 450.0f, 1400.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1800.0f, 470.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 470.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1800.0f, 1400.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			}, // next is object28
 		};
 	}
 }

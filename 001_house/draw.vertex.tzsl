@@ -20,7 +20,7 @@ struct GameRenderInfo
 {
 	vec4 camera_pos;
 	vec4 camera_rot;
-	ObjectInfo object_data[11];
+	ObjectInfo object_data[72];
 	mat4 view;
 	mat4 projection;
 };

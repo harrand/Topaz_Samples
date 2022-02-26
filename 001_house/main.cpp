@@ -9,7 +9,6 @@ int main()
 	tz::initialise
 	({
 		.name = "Sample 001 - House",
-		.window = {.flags = {.resizeable = false}}
 	});
 	{
 		game::RenderState state;

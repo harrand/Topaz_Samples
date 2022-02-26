@@ -35,11 +35,26 @@ resource(id = 1) buffer GameData
 	GameRenderInfo info;
 } game_data;
 
-layout(location = 0) out vec2 texcoord;
-layout(location = 1) out vec3 normal;
-layout(location = 2) out vec3 tangent;
-layout(location = 3) out vec3 bitangent;
-layout(location = 4) out uint object_id;
+layout(location = 0) out vec3 position;
+layout(location = 1) out vec2 texcoord;
+layout(location = 2) out vec3 normal;
+layout(location = 3) out vec3 tangent;
+layout(location = 4) out vec3 bitangent;
+layout(location = 5) out uint object_id;
+layout(location = 6) out mat3 tbn_matrix;
+layout(location = 9) out mat4 mv_matrix;
+
+mat3 calculate_tbn_matrix(mat4 model_view)
+{
+	// We will work in camera space.
+	vec3 normal_cameraspace = (model_view * vec4(normal, 0.0)).xyz;
+	vec3 tangent_cameraspace = (model_view * vec4(tangent, 0.0)).xyz;
+	// Gramm-schmidt
+	tangent_cameraspace = normalize(tangent_cameraspace - dot(tangent_cameraspace, normal_cameraspace) * normal_cameraspace);
+
+	vec3 bitangent_cameraspace = cross(tangent_cameraspace, normal_cameraspace);
+	return transpose(mat3(tangent_cameraspace, bitangent_cameraspace, normal_cameraspace));
+}
 
 void main()
 {
@@ -49,14 +64,17 @@ void main()
 	mat4 model = this_object_info.model;
 	mat4 mvp = game_data.info.projection * game_data.info.view * model;
 
-	vec3 position_modelspace = vtx.position;
-	gl_Position = mvp * vec4(position_modelspace, 1.0);
+	position = vtx.position;
+	gl_Position = mvp * vec4(position, 1.0);
 	texcoord = vtx.texcoord;
 	normal = vtx.normal;
 	tangent = vtx.tangent;
 	bitangent = vtx.bitangent;
 	//object_id = vtx.object_id;
 	object_id = this_object_info.texture_id;
+	mat4 mv = game_data.info.view * model;
+	tbn_matrix = calculate_tbn_matrix(mv);
+	mv_matrix = mv;
 	#if TZ_VULKAN
 		gl_Position.z = (gl_Position.z + gl_Position.w) / 2.0;
 	#endif

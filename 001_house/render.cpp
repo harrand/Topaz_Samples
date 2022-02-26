@@ -25,11 +25,23 @@ namespace game
 	world_buf(tz::gl2::BufferResource::from_many(this->world_mesh)),
 	game_buf(tz::gl2::BufferResource::from_one(GameRenderInfo{}, tz::gl2::ResourceAccess::DynamicFixed)),
 	stonebricks(game::get_image(game::ImageName::StoneBricks)),
+	stonebricks_normal(game::get_image(game::ImageName::StoneBricks_NormalMap)),
+	stonebricks_parallax(game::get_image(game::ImageName::StoneBricks_ParallaxMap)),
 	stonebricks_res(tz::gl2::ImageResource::from_memory(this->stonebricks.format, this->stonebricks.dimensions, this->stonebricks.image_data)),
+	stonebricks_normal_res(tz::gl2::ImageResource::from_memory(this->stonebricks_normal.format, this->stonebricks_normal.dimensions, this->stonebricks_normal.image_data)),
+	stonebricks_parallax_res(tz::gl2::ImageResource::from_memory(this->stonebricks_parallax.format, this->stonebricks_parallax.dimensions, this->stonebricks_parallax.image_data)),
 	birch(game::get_image(game::ImageName::Birch)),
+	birch_normal(game::get_image(game::ImageName::Birch_NormalMap)),
+	birch_parallax(game::get_image(game::ImageName::Birch_ParallaxMap)),
 	birch_res(tz::gl2::ImageResource::from_memory(this->birch.format, this->birch.dimensions, this->birch.image_data)),
+	birch_normal_res(tz::gl2::ImageResource::from_memory(this->birch_normal.format, this->birch_normal.dimensions, this->birch_normal.image_data)),
+	birch_parallax_res(tz::gl2::ImageResource::from_memory(this->birch_parallax.format, this->birch_parallax.dimensions, this->birch_parallax.image_data)),
 	wood(game::get_image(game::ImageName::Wood)),
+	wood_normal(game::get_image(game::ImageName::Wood_NormalMap)),
+	wood_parallax(game::get_image(game::ImageName::Wood_ParallaxMap)),
 	wood_res(tz::gl2::ImageResource::from_memory(this->wood.format, this->wood.dimensions, this->wood.image_data)),
+	wood_normal_res(tz::gl2::ImageResource::from_memory(this->wood_normal.format, this->wood_normal.dimensions, this->wood_normal.image_data)),
+	wood_parallax_res(tz::gl2::ImageResource::from_memory(this->wood_parallax.format, this->wood_parallax.dimensions, this->wood_parallax.image_data)),
 	world_buffer_handle(tz::nullhand),
 	game_buffer_handle(tz::nullhand)
 	{
@@ -42,6 +54,12 @@ namespace game
 		this->rinfo.add_resource(this->stonebricks_res);
 		this->rinfo.add_resource(this->birch_res);
 		this->rinfo.add_resource(this->wood_res);
+		this->rinfo.add_resource(this->stonebricks_normal_res);
+		this->rinfo.add_resource(this->birch_normal_res);
+		this->rinfo.add_resource(this->wood_normal_res);
+		this->rinfo.add_resource(this->stonebricks_parallax_res);
+		this->rinfo.add_resource(this->birch_parallax_res);
+		this->rinfo.add_resource(this->wood_parallax_res);
 	}
 
 	const tz::gl2::RendererInfo& RenderState::info() const

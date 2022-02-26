@@ -12,11 +12,29 @@ namespace game
 			case ImageName::StoneBricks:
 				filename = "../../001_house/data/images/stonebricks.png";
 			break;
+			case ImageName::StoneBricks_NormalMap:
+				filename = "../../001_house/data/images/stonebricks_normal.png";
+			break;
+			case ImageName::StoneBricks_ParallaxMap:
+				filename = "../../001_house/data/images/stonebricks_parallax.png";
+			break;
 			case ImageName::Birch:
 				filename = "../../001_house/data/images/birch.png";
 			break;
+			case ImageName::Birch_NormalMap:
+				filename = "../../001_house/data/images/birch_normal.png";
+			break;
+			case ImageName::Birch_ParallaxMap:
+				filename = "../../001_house/data/images/birch_parallax.png";
+			break;
 			case ImageName::Wood:
 				filename = "../../001_house/data/images/wood.png";
+			break;
+			case ImageName::Wood_NormalMap:
+				filename = "../../001_house/data/images/wood_normal.png";
+			break;
+			case ImageName::Wood_ParallaxMap:
+				filename = "../../001_house/data/images/wood_parallax.png";
 			break;
 			default:
 				tz_error("Unrecognised image name. Please submit a bug report");

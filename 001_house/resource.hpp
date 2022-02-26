@@ -28,8 +28,14 @@ namespace game
 	enum class ImageName
 	{
 		StoneBricks,
+		StoneBricks_NormalMap,
+		StoneBricks_ParallaxMap,
 		Birch,
-		Wood
+		Birch_NormalMap,
+		Birch_ParallaxMap,
+		Wood,
+		Wood_NormalMap,
+		Wood_ParallaxMap
 	};
 
 	samplelib::ImageImportResult get_image(ImageName name);

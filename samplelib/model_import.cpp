@@ -42,6 +42,30 @@ namespace samplelib
 				});
 			}
 		}
+		// Now go through and calculate tangent space.
+		for(std::size_t i = 0; i < ret.vertices.length(); i += 3)
+		{
+			tz::Vec3& v0 = ret.vertices[i + 0].position;
+			tz::Vec3& v1 = ret.vertices[i + 1].position;
+			tz::Vec3& v2 = ret.vertices[i + 2].position;
+
+			tz::Vec2 uv0 = ret.vertices[i + 0].texcoord;
+			tz::Vec2 uv1 = ret.vertices[i + 1].texcoord;
+			tz::Vec2 uv2 = ret.vertices[i + 2].texcoord;
+
+			tz::Vec3 delta1 = v1 - v0;
+			tz::Vec3 delta2 = v2 - v0;
+
+			tz::Vec2 uvdelta1 = uv1 - uv0;
+			tz::Vec2 uvdelta2 = uv2 - uv0;
+
+			float r = 1.0f / (uvdelta1[0] * uvdelta2[1] - uvdelta1[1] * uvdelta2[0]);
+			tz::Vec3 tangent = (delta1 * uvdelta2[1] - delta2 * uvdelta1[1]) * r;
+			tz::Vec3 bitangent = (delta2 * uvdelta1[0] - delta1 * uvdelta2[0]) * r;
+
+			ret.vertices[i + 0].tangent = ret.vertices[i + 1].tangent = ret.vertices[i + 2].tangent = tangent;
+			ret.vertices[i + 0].bitangent = ret.vertices[i + 1].bitangent = ret.vertices[i + 2].bitangent = bitangent;
+		}
 		return ret;
 	}
 }

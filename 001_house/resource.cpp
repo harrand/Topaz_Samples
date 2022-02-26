@@ -74,6 +74,50 @@ namespace game
 		add_mesh("../../001_house/data/models/cube.obj", 25);
 		add_mesh("../../001_house/data/models/cube.obj", 26);
 		add_mesh("../../001_house/data/models/cube.obj", 27);
+		add_mesh("../../001_house/data/models/cube.obj", 28);
+		add_mesh("../../001_house/data/models/cube.obj", 29);
+		add_mesh("../../001_house/data/models/cube.obj", 30);
+		add_mesh("../../001_house/data/models/cube.obj", 31);
+		add_mesh("../../001_house/data/models/cube.obj", 32);
+		add_mesh("../../001_house/data/models/cube.obj", 33);
+		add_mesh("../../001_house/data/models/cube.obj", 34);
+		add_mesh("../../001_house/data/models/cube.obj", 35);
+		add_mesh("../../001_house/data/models/cube.obj", 36);
+		add_mesh("../../001_house/data/models/cube.obj", 37);
+		add_mesh("../../001_house/data/models/cube.obj", 38);
+		add_mesh("../../001_house/data/models/cube.obj", 39);
+		add_mesh("../../001_house/data/models/cube.obj", 40);
+		add_mesh("../../001_house/data/models/cube.obj", 41);
+		add_mesh("../../001_house/data/models/torus.obj", 42);
+		add_mesh("../../001_house/data/models/torus.obj", 43);
+		add_mesh("../../001_house/data/models/cube.obj", 44);
+		add_mesh("../../001_house/data/models/cube.obj", 45);
+		add_mesh("../../001_house/data/models/cube.obj", 46);
+		add_mesh("../../001_house/data/models/cube.obj", 47);
+		add_mesh("../../001_house/data/models/cube.obj", 48);
+		add_mesh("../../001_house/data/models/cube.obj", 49);
+		add_mesh("../../001_house/data/models/cube.obj", 50);
+		add_mesh("../../001_house/data/models/cube.obj", 51);
+		add_mesh("../../001_house/data/models/cube.obj", 52);
+		add_mesh("../../001_house/data/models/cube.obj", 53);
+		add_mesh("../../001_house/data/models/cube.obj", 54);
+		add_mesh("../../001_house/data/models/cube.obj", 55);
+		add_mesh("../../001_house/data/models/cube.obj", 56);
+		add_mesh("../../001_house/data/models/cylinder.obj", 57);
+		add_mesh("../../001_house/data/models/cylinder.obj", 58);
+		add_mesh("../../001_house/data/models/cylinder.obj", 59);
+		add_mesh("../../001_house/data/models/cylinder.obj", 60);
+		add_mesh("../../001_house/data/models/cube.obj", 61);
+		add_mesh("../../001_house/data/models/cube.obj", 62);
+		add_mesh("../../001_house/data/models/cube.obj", 63);
+		add_mesh("../../001_house/data/models/cube.obj", 64);
+		add_mesh("../../001_house/data/models/cube.obj", 65);
+		add_mesh("../../001_house/data/models/cube.obj", 66);
+		add_mesh("../../001_house/data/models/cube.obj", 67);
+		add_mesh("../../001_house/data/models/cube.obj", 68);
+		add_mesh("../../001_house/data/models/cube.obj", 69);
+		add_mesh("../../001_house/data/models/cube.obj", 70);
+		add_mesh("../../001_house/data/models/cylinder.obj", 71);
 		return ret;
 	}
 
@@ -221,6 +265,229 @@ namespace game
 				.model = tz::model({-1800.0f, 1400.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
 				.texture_id = 0
 			}, // next is object28
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 1400.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1800.0f, 470.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 470.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1800.0f, 1400.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 1400.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 0.0f, -2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 0.0f, -2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3800.0f, 0.0f, -2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 0.0f, 2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-2600.0f, 0.0f, 2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3800.0f, 0.0f, 2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3800.0f, 0.0f, 1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3800.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3800.0f, 0.0f, -1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 200.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {70.0f, 70.0f, 70.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-1400.0f, 600.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {70.0f, 70.0f, 70.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-5000.0f, 0.0f, 2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-5000.0f, 0.0f, 1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-5000.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-5000.0f, 0.0f, -1200.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-5000.0f, 0.0f, -2400.0f}, {0.0f, 0.0f, 0.0f}, {600.0f, 40.0f, 600.0f}),
+				.texture_id = 1
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3400.0f, 470.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3400.0f, 1400.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4200.0f, 470.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4200.0f, 1400.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3400.0f, 470.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3400.0f, 1400.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4200.0f, 470.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4200.0f, 1400.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {400.0f, 430.0f, 100.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3700.0f, 900.0f, 2000.0f}, {1.5708f, 1.5708f, 0.0f}, {1400.0f, 450.0f, 1400.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-3700.0f, 900.0f, -2000.0f}, {1.5708f, 1.5708f, 0.0f}, {1400.0f, 450.0f, 1400.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 935.0f, -2000.0f}, {0.0f, 0.0f, 0.0f}, {1300.0f, 450.0f, 1300.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 935.0f, 2000.0f}, {0.0f, 0.0f, 0.0f}, {1300.0f, 450.0f, 1300.0f}),
+				.texture_id = 2
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 470.0f, 800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 470.0f, -800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 1400.0f, 800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 1400.0f, -800.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 1400.0f, 1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 1400.0f, -1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 470.0f, 1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 470.0f, -1600.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 470.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 1400.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {100.0f, 430.0f, 400.0f}),
+				.texture_id = 0
+			},
+			ObjectInfo
+			{
+				.model = tz::model({-4600.0f, 900.0f, 0.0f}, {1.5708f, 0.0f, 0.0f}, {1400.0f, 1400.0f, 1400.0f}),
+				.texture_id = 2
+			}
+
+
+
 		};
 	}
 }

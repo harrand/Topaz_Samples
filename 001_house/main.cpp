@@ -26,29 +26,30 @@ int main()
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
 				tz::Vec3 cam_pos = mutable_state.camera_pos;
 				tz::Vec3 cam_rot = mutable_state.camera_rot;
+				constexpr float multiplier = 20;
 				if(is_key_down(tz::KeyCode::W))
 				{
-					cam_pos[2] -= 0.01f;
+					cam_pos[2] -= 0.01f * multiplier;
 				}
 				if(is_key_down(tz::KeyCode::A))
 				{
-					cam_pos[0] -= 0.01f;
+					cam_pos[0] -= 0.01f * multiplier;
 				}
 				if(is_key_down(tz::KeyCode::S))
 				{
-					cam_pos[2] += 0.01f;
+					cam_pos[2] += 0.01f * multiplier;
 				}
 				if(is_key_down(tz::KeyCode::D))
 				{
-					cam_pos[0] += 0.01f;
+					cam_pos[0] += 0.01f * multiplier;
 				}
 				if(is_key_down(tz::KeyCode::X))
 				{
-					cam_pos[1] -= 0.01f;
+					cam_pos[1] -= 0.01f * multiplier;
 				}
 				if(is_key_down(tz::KeyCode::Z))
 				{
-					cam_pos[1] += 0.01f;
+					cam_pos[1] += 0.01f * multiplier;
 				}
 				mutable_state.set_camera(cam_pos, cam_rot);
 				mutable_state.update_dimensions({tz::window().get_width(), tz::window().get_height()});

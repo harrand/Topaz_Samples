@@ -16,7 +16,7 @@ namespace game
 	
 	void GameRenderInfo::update_dimensions(tz::Vec2 viewport_dimensions)
 	{
-		this->projection_matrix = tz::perspective(1.5708f, viewport_dimensions[0] / viewport_dimensions[1], 0.1f, 10000.0f);
+		this->projection_matrix = tz::perspective(1.5708f, viewport_dimensions[0] / viewport_dimensions[1], 10.0f, 10000.0f);
 	}
 
 	RenderState::RenderState():

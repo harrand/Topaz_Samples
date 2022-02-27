@@ -1,4 +1,5 @@
 #include "core/peripherals/keyboard.hpp"
+#include "core/peripherals/mouse.hpp"
 #include "core/tz.hpp"
 #include "core/matrix_transform.hpp"
 #include "render.hpp"
@@ -45,14 +46,26 @@ int main()
 				{
 					cam_pos -= cam_right * multiplier;
 				}
-				if(is_key_down(tz::KeyCode::X))
-				{
-					cam_pos[1] -= multiplier;
-				}
-				if(is_key_down(tz::KeyCode::Z))
+				if(is_key_down(tz::KeyCode::Space))
 				{
 					cam_pos[1] += multiplier;
 				}
+				if(is_key_down(tz::KeyCode::LeftShift))
+				{
+					cam_pos[1] -= multiplier;
+				}
+				static tz::Vec2i mouse_position;
+				tz::Vec2ui mp = tz::window().get_mouse_position_state().get_mouse_position();
+				tz::Vec2i mpi{static_cast<int>(mp[0]), static_cast<int>(mp[1])};
+				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::peripherals::mouse::get_mouse_button(tz::MouseButton::Left)))
+				{
+					// Get mouse delta since last frame.
+					tz::Vec2i mouse_delta = mpi - mouse_position;
+					constexpr float rot_multiplier = 0.003f;
+					cam_rot[1] -= mouse_delta[0] * rot_multiplier;
+					cam_rot[0] -= mouse_delta[1] * rot_multiplier;
+				}
+				mouse_position = mpi;
 				mutable_state.set_camera({cam_pos[0], cam_pos[1], cam_pos[2]}, cam_rot);
 				mutable_state.update_dimensions({tz::window().get_width(), tz::window().get_height()});
 				#if TZ_DEBUG

@@ -43,7 +43,9 @@ layout(location = 4) out vec3 bitangent;
 layout(location = 5) out uint object_id;
 layout(location = 6) out mat3 tbn_matrix;
 layout(location = 9) out mat4 mv_matrix;
+layout(location = 13) out mat4 view_matrix;
 
+// go from camera space to tangent space
 mat3 calculate_tbn_matrix(mat4 model_view)
 {
 	// We will work in camera space.
@@ -75,6 +77,7 @@ void main()
 	mat4 mv = game_data.info.view * model;
 	tbn_matrix = calculate_tbn_matrix(mv);
 	mv_matrix = mv;
+	view_matrix = game_data.info.view;
 	#if TZ_VULKAN
 		gl_Position.z = (gl_Position.z + gl_Position.w) / 2.0;
 	#endif

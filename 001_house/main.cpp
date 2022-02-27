@@ -31,7 +31,7 @@ int main()
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
 				tz::Vec4 cam_pos = {mutable_state.camera_pos[0], mutable_state.camera_pos[1], mutable_state.camera_pos[2], 0.0f};
 				tz::Vec3 cam_rot = mutable_state.camera_rot;
-				constexpr float multiplier = 10.0f;
+				constexpr float multiplier = 25.0f;
 				tz::Vec4 cam_forward = mutable_state.view_matrix * tz::Vec4{0.0f, 0.0f, -1.0f, 0.0f};
 				tz::Vec4 cam_right = mutable_state.view_matrix * tz::Vec4{-1.0f, 0.0f, 0.0f, 0.0f};
 				if(is_key_down(tz::KeyCode::W))

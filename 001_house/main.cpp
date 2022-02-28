@@ -63,8 +63,7 @@ int main()
 					break;
 				}
 				static tz::Vec2i mouse_position;
-				tz::Vec2ui mp = tz::window().get_mouse_position_state().get_mouse_position();
-				tz::Vec2i mpi{static_cast<int>(mp[0]), static_cast<int>(mp[1])};
+				auto mpi = static_cast<tz::Vec2i>(tz::window().get_mouse_position_state().get_mouse_position());
 				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::peripherals::mouse::get_mouse_button(tz::MouseButton::Left)))
 				{
 					// Get mouse delta since last frame.
@@ -74,7 +73,7 @@ int main()
 					cam_rot[0] -= mouse_delta[1] * rot_multiplier;
 				}
 				mouse_position = mpi;
-				mutable_state.set_camera({cam_pos[0], cam_pos[1], cam_pos[2]}, cam_rot);
+				mutable_state.set_camera(cam_pos.swizzle<0, 1, 2>(), cam_rot);
 				mutable_state.update_dimensions({tz::window().get_width(), tz::window().get_height()});
 				#if TZ_DEBUG
 					std::printf("Camera Pos: {%.2f, %.2f, %.2f} Rot: {%.2f, %.2f, %.2f}\r", cam_pos[0], cam_pos[1], cam_pos[2], cam_rot[0], cam_rot[1], cam_rot[2]);

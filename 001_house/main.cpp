@@ -7,7 +7,7 @@
 
 int main()
 {
-	// A very basic sample which draws a house in a skybox. All resources and assets are loaded upfront for simplicity.
+	// A very basic sample which draws a house in a skybox. Will probably remind you of the early 2000's. Imported shaders but all assets are loaded at runtime. Using extremely basic phong shading.
 	tz::initialise
 	({
 		.name = "Sample 001 - House",
@@ -29,7 +29,7 @@ int main()
 				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(tz::peripherals::keyboard::get_key(code));};
 
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
-				tz::Vec4 cam_pos = {mutable_state.camera_pos[0], mutable_state.camera_pos[1], mutable_state.camera_pos[2], 0.0f};
+				tz::Vec4 cam_pos = mutable_state.camera_pos.with_more(0.0f);
 				tz::Vec3 cam_rot = mutable_state.camera_rot;
 				constexpr float multiplier = 25.0f;
 				tz::Vec4 cam_forward = mutable_state.view_matrix * tz::Vec4{0.0f, 0.0f, -1.0f, 0.0f};

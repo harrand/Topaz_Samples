@@ -1,0 +1,60 @@
+#pragma shader_stage(vertex)
+
+vec2 quad_positions[6] = vec2[](
+	vec2(-1.0, -1.0), vec2(1.0, 1.0), vec2(1.0, -1.0),
+	vec2(-1.0, -1.0), vec2(-1.0, 1.0), vec2(1.0, 1.0)
+);
+
+vec2 quad_texcoords[6] = vec2[](
+	vec2(0.0, 0.0), vec2(1.0, 1.0), vec2(1.0, 0.0),
+	vec2(0.0, 0.0), vec2(0.0, 1.0), vec2(1.0, 1.0)
+);
+
+struct ObjectInfo
+{
+	mat4 model;
+	uint texture_id;
+};
+
+struct GameRenderInfo
+{
+	vec2 camera_pos;
+	float camera_rot;
+	mat4 view;
+	mat4 projection;
+};
+
+resource(id = 0) buffer GameData
+{
+	GameRenderInfo info;
+} game_data;
+
+resource(id = 1) buffer ObjectData
+{
+	ObjectInfo info[];
+} object_data;
+
+layout(location = 0) out vec2 position;
+layout(location = 1) out vec2 texcoord;
+layout(location = 2) out uint texture_id;
+
+void main()
+{
+	uint quad_id = tz_VertexID / 6;
+	uint quad_vertex_id = tz_VertexID % 6;
+
+	vec2 position_modelspace = quad_positions[quad_vertex_id];
+	vec2 texcoord_modelspace = quad_texcoords[quad_vertex_id];
+	ObjectInfo this_object_info = object_data.info[quad_id];
+
+	mat4 model = this_object_info.model;
+	mat4 mvp = game_data.info.projection * game_data.info.view * model;
+
+	gl_Position = mvp * vec4(position_modelspace, 0.0, 1.0);
+	position = position_modelspace;
+	texcoord = texcoord_modelspace;
+	texture_id = this_object_info.texture_id;
+	#if TZ_VULKAN
+		gl_Position.z = (gl_Position.z + gl_Position.w) / 2.0;
+	#endif
+}

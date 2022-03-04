@@ -36,14 +36,33 @@ namespace game
 	RenderState::RenderState():
 	rinfo(),
 	game_buf(tz::gl2::BufferResource::from_one(GameRenderInfo{}, tz::gl2::ResourceAccess::DynamicFixed)),
-	object_storage_buf(tz::gl2::BufferResource::from_one(ObjectInfo{}, tz::gl2::ResourceAccess::DynamicVariable)),
+	object_storage_buf(tz::gl2::BufferResource::from_many
+	({
+		ObjectInfo
+		{
+			.model = tz::model({0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}),
+			.texture_id = 0
+		},
+		ObjectInfo
+		{
+			.model = tz::model({-10.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}),
+			.texture_id = 1
+		},
+		ObjectInfo
+		{
+			.model = tz::model({10.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}),
+			.texture_id = 2
+		}
+	}, tz::gl2::ResourceAccess::DynamicVariable)),
 	game_buffer_handle(tz::nullhand),
 	object_storage_buffer_handle(tz::nullhand),
 	textures()
 	{
 		this->textures.textures =
 		{
-			TextureStorage::Element("../../002_tiles2d/data/orb_fire.png")
+			TextureStorage::Element("../../002_tiles2d/data/orb_fire.png"),
+			TextureStorage::Element("../../002_tiles2d/data/orb_frost.png"),
+			TextureStorage::Element("../../002_tiles2d/data/orb_void.png")
 		};
 
 		this->rinfo.shader().set_shader(tz::gl2::ShaderStage::Vertex, ImportedShaderSource(draw, vertex));
@@ -65,7 +84,7 @@ namespace game
 	std::size_t RenderState::get_triangle_count(tz::gl2::Renderer& renderer) const
 	{
 		// Assume each 'quad' is 2 triangles. Therefore num triangles = 2 * number of objects in scene. This is resizeable so isn't trivial to calculate.
-		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->game_buffer_handle))->data_as<ObjectInfo>().size() * 2;
+		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->object_storage_buffer_handle))->data_as<ObjectInfo>().size() * 2;
 	}
 
 	GameRenderInfo& RenderState::get_mutable_state(tz::gl2::Renderer& renderer)
@@ -75,6 +94,6 @@ namespace game
 
 	std::span<ObjectInfo> RenderState::get_scene_object_state(tz::gl2::Renderer& renderer)
 	{
-		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->game_buffer_handle))->data_as<ObjectInfo>();
+		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->object_storage_buffer_handle))->data_as<ObjectInfo>();
 	}
 }

@@ -28,40 +28,61 @@ int main()
 		{
 			tz::window().update();
 			renderer.render(state.get_triangle_count(renderer));
+			state.update(renderer);
 			// Fixed update of 60 per second (16.67ms == 16670us).
 			if(fixed_update)
 			{
 				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(tz::peripherals::keyboard::get_key(code));};
+				bool casting = tz::window().get_mouse_button_state().is_mouse_button_down(tz::peripherals::mouse::get_mouse_button(tz::MouseButton::Left));
 
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
-				tz::Vec4 cam_pos = mutable_state.camera_pos.with_more(tz::Vec2{0.0f, 0.0f});
+				static tz::Vec2 player_pos = {0.0f, 0.0f};
 				constexpr float multiplier = 0.1f;
 				tz::Vec4 cam_forward = mutable_state.view_matrix * tz::Vec4{0.0f, 0.0f, -1.0f, 0.0f};
 				tz::Vec4 cam_right = mutable_state.view_matrix * tz::Vec4{-1.0f, 0.0f, 0.0f, 0.0f};
-				if(is_key_down(tz::KeyCode::W))
+				bool moving = false;
+
+				if(is_key_down(tz::KeyCode::W) && !casting)
 				{
-					cam_pos[1] += multiplier;
+					player_pos[1] += multiplier;
+					state.set_player_keyframe(game::BipedalImageKeyframe::Up);
+					moving = true;
 				}
-				if(is_key_down(tz::KeyCode::A))
+				if(is_key_down(tz::KeyCode::A) && !casting)
 				{
-					cam_pos += cam_right * multiplier;
+					player_pos += cam_right.swizzle<0, 1>() * multiplier;
+					state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
+					moving = true;
 				}
-				if(is_key_down(tz::KeyCode::S))
+				if(is_key_down(tz::KeyCode::S) && !casting)
 				{
-					cam_pos[1] -= multiplier;
+					player_pos[1] -= multiplier;
+					state.set_player_keyframe(game::BipedalImageKeyframe::Down);
+					moving = true;
 				}
-				if(is_key_down(tz::KeyCode::D))
+				if(is_key_down(tz::KeyCode::D) && !casting)
 				{
-					cam_pos -= cam_right * multiplier;
+					player_pos -= cam_right.swizzle<0, 1>() * multiplier;
+					state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
+					moving = true;
 				}
 				if(is_key_down(tz::KeyCode::Escape))
 				{
 					break;
 				}
-				mutable_state.set_camera(cam_pos.swizzle<0, 1>(), 0.0f);
+				if(casting)
+				{
+					state.set_player_keyframe(game::BipedalImageKeyframe::Special);
+				}
+				else if(!moving)
+				{
+					state.set_player_keyframe(game::BipedalImageKeyframe::Idle);
+				}
+				mutable_state.set_camera({0.0f, 0.0f}, 0.0f);
 				mutable_state.update_dimensions({tz::window().get_width(), tz::window().get_height()});
+				state.get_player_state(renderer).model = tz::model(player_pos.with_more(0.0f), {0.0f, 0.0f, 0.0f}, {2.5f, 2.5f, 2.5f});
 				#if TZ_DEBUG
-					std::printf("Camera Pos: {%.2f, %.2f}\r", cam_pos[0], cam_pos[1]);
+					std::printf("Camera Pos: {%.2f, %.2f}\r", player_pos[0], player_pos[1]);
 				#endif
 				fixed_update.reset();
 			}

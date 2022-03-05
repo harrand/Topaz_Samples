@@ -131,6 +131,9 @@ namespace game
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_1.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_2.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_3.png"),
+
+			TextureStorage::Element("../../002_tiles2d/data/images/rune/rune_off.png"),
+			TextureStorage::Element("../../002_tiles2d/data/images/rune/rune_on.png"),
 		};
 
 		this->rinfo.shader().set_shader(tz::gl2::ShaderStage::Vertex, ImportedShaderSource(draw, vertex));

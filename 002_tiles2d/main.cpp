@@ -41,17 +41,12 @@ int main()
 				tz::Vec4 cam_forward = mutable_state.view_matrix * tz::Vec4{0.0f, 0.0f, -1.0f, 0.0f};
 				tz::Vec4 cam_right = mutable_state.view_matrix * tz::Vec4{-1.0f, 0.0f, 0.0f, 0.0f};
 				bool moving = false;
+				bool invert_horizontal = false;
 
 				if(is_key_down(tz::KeyCode::W) && !casting)
 				{
 					player_pos[1] += multiplier;
 					state.set_player_keyframe(game::BipedalImageKeyframe::Up);
-					moving = true;
-				}
-				if(is_key_down(tz::KeyCode::A) && !casting)
-				{
-					player_pos += cam_right.swizzle<0, 1>() * multiplier;
-					state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
 					moving = true;
 				}
 				if(is_key_down(tz::KeyCode::S) && !casting)
@@ -60,11 +55,24 @@ int main()
 					state.set_player_keyframe(game::BipedalImageKeyframe::Down);
 					moving = true;
 				}
+				if(is_key_down(tz::KeyCode::A) && !casting)
+				{
+					player_pos += cam_right.swizzle<0, 1>() * multiplier;
+					if(!moving)
+					{
+						state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
+					}
+					moving = true;
+				}
 				if(is_key_down(tz::KeyCode::D) && !casting)
 				{
 					player_pos -= cam_right.swizzle<0, 1>() * multiplier;
-					state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
+					if(!moving)
+					{
+						state.set_player_keyframe(game::BipedalImageKeyframe::HorizontalMove);
+					}
 					moving = true;
+					invert_horizontal = true;
 				}
 				if(is_key_down(tz::KeyCode::Escape))
 				{
@@ -80,7 +88,7 @@ int main()
 				}
 				mutable_state.set_camera({0.0f, 0.0f}, 0.0f);
 				mutable_state.update_dimensions({tz::window().get_width(), tz::window().get_height()});
-				state.get_player_state(renderer).model = tz::model(player_pos.with_more(0.0f), {0.0f, 0.0f, 0.0f}, {2.5f, 2.5f, 2.5f});
+				state.get_player_state(renderer).model = tz::model(player_pos.with_more(0.0f), {0.0f, 0.0f, 0.0f}, {2.5f * (invert_horizontal ? -1 : 1), 2.5f, 2.5f});
 				#if TZ_DEBUG
 					std::printf("Camera Pos: {%.2f, %.2f}\r", player_pos[0], player_pos[1]);
 				#endif

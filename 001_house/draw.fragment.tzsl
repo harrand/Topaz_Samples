@@ -14,7 +14,8 @@ layout(location = 13) in mat4 view_matrix;
 layout(location = 0) out vec4 output_colour;
 
 const float specular_strength = 0.2f;
-const float parallax_multiplier = 0.03f;
+const float parallax_multiplier = 0.02f;
+const float parallax_offset = -0.01f;
 
 struct Light
 {
@@ -55,8 +56,8 @@ vec3 get_distance_from_fragment()
 vec2 texcoord_offset(vec2 texcoord, uint parallax_texture_id)
 {
 	float height = texture(tex_sampler[parallax_texture_id], texcoord).r;
-	vec3 view_dir = -normalize(get_distance_from_fragment());
-	vec2 p = view_dir.xy / view_dir.z * (height * parallax_multiplier);
+	vec3 view_dir = -normalize(tbn_matrix * get_distance_from_fragment());
+	vec2 p = view_dir.xy / view_dir.z * (height * parallax_multiplier) + parallax_offset;
 	return texcoord - p;
 }
 

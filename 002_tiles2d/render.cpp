@@ -145,6 +145,7 @@ namespace game
 			this->rinfo.add_resource(texture_element.image);
 		}
 		this->rinfo.set_options({tz::gl2::RendererOption::NoDepthTesting});
+		this->rinfo.set_clear_colour({0.06f, 0.0f, 0.1f, 1.0f});
 	}
 
 	void RenderState::update(tz::gl2::Renderer& renderer)

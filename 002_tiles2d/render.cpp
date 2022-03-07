@@ -179,7 +179,7 @@ namespace game
 
 	GameRenderInfo& RenderState::get_mutable_state(tz::gl2::Renderer& renderer)
 	{
-		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->game_buffer_handle))->data_as<GameRenderInfo>().front();
+		return renderer.get_resource(this->game_buffer_handle)->data_as<GameRenderInfo>().front();
 	}
 
 	std::span<ObjectInfo> RenderState::get_scene_object_state(tz::gl2::Renderer& renderer)
@@ -204,6 +204,6 @@ namespace game
 
 	std::span<ObjectInfo> RenderState::get_entire_object_state(tz::gl2::Renderer& renderer)
 	{
-		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->object_storage_buffer_handle))->data_as<ObjectInfo>();
+		return renderer.get_resource(this->object_storage_buffer_handle)->data_as<ObjectInfo>();
 	}
 }

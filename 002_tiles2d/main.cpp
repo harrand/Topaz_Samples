@@ -32,8 +32,8 @@ int main()
 			// Fixed update of 60 per second (16.67ms == 16670us).
 			if(fixed_update)
 			{
-				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(tz::peripherals::keyboard::get_key(code));};
-				bool casting = tz::window().get_mouse_button_state().is_mouse_button_down(tz::peripherals::mouse::get_mouse_button(tz::MouseButton::Left));
+				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(code);};
+				bool casting = tz::window().get_mouse_button_state().is_mouse_button_down(tz::MouseButton::Left);
 				tz::Vec2ui mouse_position = tz::window().get_mouse_position_state().get_mouse_position();
 				tz::Vec2 rune_position;
 				const float aspect_ratio = static_cast<float>(tz::window().get_width()) / tz::window().get_height();

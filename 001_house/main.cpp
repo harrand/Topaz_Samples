@@ -26,7 +26,7 @@ int main()
 			// Fixed update of 60 per second (16.67ms == 16670us).
 			if(fixed_update)
 			{
-				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(tz::peripherals::keyboard::get_key(code));};
+				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(code);};
 
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
 				tz::Vec4 cam_pos = mutable_state.camera_pos.with_more(0.0f);
@@ -64,7 +64,7 @@ int main()
 				}
 				static tz::Vec2i mouse_position;
 				auto mpi = static_cast<tz::Vec2i>(tz::window().get_mouse_position_state().get_mouse_position());
-				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::peripherals::mouse::get_mouse_button(tz::MouseButton::Left)))
+				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::MouseButton::Left))
 				{
 					// Get mouse delta since last frame.
 					tz::Vec2i mouse_delta = mpi - mouse_position;

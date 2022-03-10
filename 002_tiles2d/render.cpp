@@ -28,7 +28,7 @@ namespace game
 
 	TextureStorage::Element::Element(const char* path):
 	data(samplelib::read_image(path)),
-	image(tz::gl2::ImageResource::from_memory(this->data.format, this->data.dimensions, this->data.image_data))
+	image(tz::gl::ImageResource::from_memory(this->data.format, this->data.dimensions, this->data.image_data))
 	{
 
 	}
@@ -90,8 +90,8 @@ namespace game
 
 	RenderState::RenderState():
 	rinfo(),
-	game_buf(tz::gl2::BufferResource::from_one(GameRenderInfo{}, tz::gl2::ResourceAccess::DynamicFixed)),
-	object_storage_buf(tz::gl2::BufferResource::from_many
+	game_buf(tz::gl::BufferResource::from_one(GameRenderInfo{}, tz::gl::ResourceAccess::DynamicFixed)),
+	object_storage_buf(tz::gl::BufferResource::from_many
 	({
 		ObjectInfo
 		{
@@ -108,7 +108,7 @@ namespace game
 			.model = tz::model({10.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}),
 			.texture_id = 2
 		}
-	}, tz::gl2::ResourceAccess::DynamicVariable)),
+	}, tz::gl::ResourceAccess::DynamicVariable)),
 	game_buffer_handle(tz::nullhand),
 	object_storage_buffer_handle(tz::nullhand),
 	textures()
@@ -136,19 +136,19 @@ namespace game
 			TextureStorage::Element("../../002_tiles2d/data/images/rune/rune_on.png"),
 		};
 
-		this->rinfo.shader().set_shader(tz::gl2::ShaderStage::Vertex, ImportedShaderSource(draw, vertex));
-		this->rinfo.shader().set_shader(tz::gl2::ShaderStage::Fragment, ImportedShaderSource(draw, fragment));
+		this->rinfo.shader().set_shader(tz::gl::ShaderStage::Vertex, ImportedShaderSource(draw, vertex));
+		this->rinfo.shader().set_shader(tz::gl::ShaderStage::Fragment, ImportedShaderSource(draw, fragment));
 		this->game_buffer_handle = this->rinfo.add_resource(this->game_buf);
 		this->object_storage_buffer_handle = this->rinfo.add_resource(this->object_storage_buf);
 		for(TextureStorage::Element& texture_element : this->textures.textures)
 		{
 			this->rinfo.add_resource(texture_element.image);
 		}
-		this->rinfo.set_options({tz::gl2::RendererOption::NoDepthTesting});
+		this->rinfo.set_options({tz::gl::RendererOption::NoDepthTesting});
 		this->rinfo.set_clear_colour({0.06f, 0.0f, 0.1f, 1.0f});
 	}
 
-	void RenderState::update(tz::gl2::Renderer& renderer)
+	void RenderState::update(tz::gl::Renderer& renderer)
 	{
 		for(auto& [object_id, anim] : this->animations)
 		{
@@ -166,28 +166,28 @@ namespace game
 		}
 	}
 
-	const tz::gl2::RendererInfo& RenderState::info() const
+	const tz::gl::RendererInfo& RenderState::info() const
 	{
 		return this->rinfo;
 	}
 
-	std::size_t RenderState::get_triangle_count(tz::gl2::Renderer& renderer) const
+	std::size_t RenderState::get_triangle_count(tz::gl::Renderer& renderer) const
 	{
 		// Assume each 'quad' is 2 triangles. Therefore num triangles = 2 * number of objects in scene. This is resizeable so isn't trivial to calculate.
-		return static_cast<tz::gl2::BufferResource*>(renderer.get_resource(this->object_storage_buffer_handle))->data_as<ObjectInfo>().size() * 2;
+		return static_cast<tz::gl::BufferResource*>(renderer.get_resource(this->object_storage_buffer_handle))->data_as<ObjectInfo>().size() * 2;
 	}
 
-	GameRenderInfo& RenderState::get_mutable_state(tz::gl2::Renderer& renderer)
+	GameRenderInfo& RenderState::get_mutable_state(tz::gl::Renderer& renderer)
 	{
 		return renderer.get_resource(this->game_buffer_handle)->data_as<GameRenderInfo>().front();
 	}
 
-	std::span<ObjectInfo> RenderState::get_scene_object_state(tz::gl2::Renderer& renderer)
+	std::span<ObjectInfo> RenderState::get_scene_object_state(tz::gl::Renderer& renderer)
 	{
 		return this->get_entire_object_state(renderer).subspan<2>();
 	}
 
-	ObjectInfo& RenderState::get_player_state(tz::gl2::Renderer& renderer)
+	ObjectInfo& RenderState::get_player_state(tz::gl::Renderer& renderer)
 	{
 		return this->get_entire_object_state(renderer)[0];
 	}
@@ -197,12 +197,12 @@ namespace game
 		this->animations.at(0).set_keyframe(keyframe);
 	}
 
-	ObjectInfo& RenderState::get_orb_state(tz::gl2::Renderer& renderer)
+	ObjectInfo& RenderState::get_orb_state(tz::gl::Renderer& renderer)
 	{
 		return this->get_entire_object_state(renderer)[1];
 	}
 
-	std::span<ObjectInfo> RenderState::get_entire_object_state(tz::gl2::Renderer& renderer)
+	std::span<ObjectInfo> RenderState::get_entire_object_state(tz::gl::Renderer& renderer)
 	{
 		return renderer.get_resource(this->object_storage_buffer_handle)->data_as<ObjectInfo>();
 	}

@@ -10,7 +10,7 @@ namespace samplelib
 	struct ImageImportResult
 	{
 		bool success;
-		tz::gl2::ImageFormat format;
+		tz::gl::ImageFormat format;
 		tz::Vec2ui dimensions;
 		std::vector<std::byte> image_data;
 	};

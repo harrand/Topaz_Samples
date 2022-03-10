@@ -30,34 +30,34 @@ namespace game
 	{
 	public:
 		RenderState();
-		const tz::gl2::RendererInfo& info() const;
+		const tz::gl::RendererInfo& info() const;
 		std::size_t get_triangle_count() const;
-		GameRenderInfo& get_mutable_state(tz::gl2::Renderer& renderer);
+		GameRenderInfo& get_mutable_state(tz::gl::Renderer& renderer);
 	private:
-		tz::gl2::RendererInfo rinfo;
+		tz::gl::RendererInfo rinfo;
 		game::NaiveMesh world_mesh;
-		tz::gl2::BufferResource world_buf;
-		tz::gl2::BufferResource game_buf;
+		tz::gl::BufferResource world_buf;
+		tz::gl::BufferResource game_buf;
 		samplelib::ImageImportResult stonebricks;
 		samplelib::ImageImportResult stonebricks_normal;
 		samplelib::ImageImportResult stonebricks_parallax;
-		tz::gl2::ImageResource stonebricks_res;
-		tz::gl2::ImageResource stonebricks_normal_res;
-		tz::gl2::ImageResource stonebricks_parallax_res;
+		tz::gl::ImageResource stonebricks_res;
+		tz::gl::ImageResource stonebricks_normal_res;
+		tz::gl::ImageResource stonebricks_parallax_res;
 		samplelib::ImageImportResult birch;
 		samplelib::ImageImportResult birch_normal;
 		samplelib::ImageImportResult birch_parallax;
-		tz::gl2::ImageResource birch_res;
-		tz::gl2::ImageResource birch_normal_res;
-		tz::gl2::ImageResource birch_parallax_res;
+		tz::gl::ImageResource birch_res;
+		tz::gl::ImageResource birch_normal_res;
+		tz::gl::ImageResource birch_parallax_res;
 		samplelib::ImageImportResult wood;
 		samplelib::ImageImportResult wood_normal;
 		samplelib::ImageImportResult wood_parallax;
-		tz::gl2::ImageResource wood_res;
-		tz::gl2::ImageResource wood_normal_res;
-		tz::gl2::ImageResource wood_parallax_res;
-		tz::gl2::ResourceHandle world_buffer_handle;
-		tz::gl2::ResourceHandle game_buffer_handle;
+		tz::gl::ImageResource wood_res;
+		tz::gl::ImageResource wood_normal_res;
+		tz::gl::ImageResource wood_parallax_res;
+		tz::gl::ResourceHandle world_buffer_handle;
+		tz::gl::ResourceHandle game_buffer_handle;
 	};
 }
 

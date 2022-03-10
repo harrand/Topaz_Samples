@@ -16,8 +16,8 @@ int main()
 		using namespace tz::literals;
 		game::RenderState state;
 		// Create renderer.
-		tz::gl2::Device dev;
-		tz::gl2::Renderer renderer = dev.create_renderer(state.info());
+		tz::gl::Device dev;
+		tz::gl::Renderer renderer = dev.create_renderer(state.info());
 		tz::Delay fixed_update{16670_us};
 		while(!tz::window().is_close_requested())
 		{

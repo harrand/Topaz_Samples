@@ -18,7 +18,7 @@ namespace samplelib
 		ImageImportResult res =
 		{
 			.success = (imgdata != nullptr),
-			.format = tz::gl2::ImageFormat::RGBA32,
+			.format = tz::gl::ImageFormat::RGBA32,
 			.dimensions = {static_cast<unsigned int>(w), static_cast<unsigned int>(h)},
 		};
 		res.image_data.resize(w * h * 4);

@@ -32,7 +32,7 @@ namespace game
 			Element(const char* path);
 
 			samplelib::ImageImportResult data;
-			tz::gl2::ImageResource image;
+			tz::gl::ImageResource image;
 		};
 		tz::BasicList<Element> textures;
 	};
@@ -65,21 +65,21 @@ namespace game
 	{
 	public:
 		RenderState();
-		void update(tz::gl2::Renderer& renderer);
-		const tz::gl2::RendererInfo& info() const;
-		std::size_t get_triangle_count(tz::gl2::Renderer& renderer) const;
-		GameRenderInfo& get_mutable_state(tz::gl2::Renderer& renderer);
-		std::span<ObjectInfo> get_scene_object_state(tz::gl2::Renderer& renderer);
-		ObjectInfo& get_player_state(tz::gl2::Renderer& renderer);
+		void update(tz::gl::Renderer& renderer);
+		const tz::gl::RendererInfo& info() const;
+		std::size_t get_triangle_count(tz::gl::Renderer& renderer) const;
+		GameRenderInfo& get_mutable_state(tz::gl::Renderer& renderer);
+		std::span<ObjectInfo> get_scene_object_state(tz::gl::Renderer& renderer);
+		ObjectInfo& get_player_state(tz::gl::Renderer& renderer);
 		void set_player_keyframe(BipedalImageKeyframe keyframe);
-		ObjectInfo& get_orb_state(tz::gl2::Renderer& renderer);
+		ObjectInfo& get_orb_state(tz::gl::Renderer& renderer);
 	private:
-		std::span<ObjectInfo> get_entire_object_state(tz::gl2::Renderer& renderer);
-		tz::gl2::RendererInfo rinfo;
-		tz::gl2::BufferResource game_buf;
-		tz::gl2::BufferResource object_storage_buf;
-		tz::gl2::ResourceHandle game_buffer_handle;
-		tz::gl2::ResourceHandle object_storage_buffer_handle;
+		std::span<ObjectInfo> get_entire_object_state(tz::gl::Renderer& renderer);
+		tz::gl::RendererInfo rinfo;
+		tz::gl::BufferResource game_buf;
+		tz::gl::BufferResource object_storage_buf;
+		tz::gl::ResourceHandle game_buffer_handle;
+		tz::gl::ResourceHandle object_storage_buffer_handle;
 		TextureStorage textures;
 		std::unordered_map<std::size_t, BipedalAnimation> animations{{0, BipedalAnimation{3}}};
 	};

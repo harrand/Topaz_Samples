@@ -1,4 +1,4 @@
-add_demo(
+add_app(
 	TARGET 002_tiles2d
 	SOURCE_FILES
 		main.cpp

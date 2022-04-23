@@ -1,4 +1,4 @@
-add_demo(
+add_app(
 	TARGET 001_house
 	SOURCE_FILES
 		main.cpp

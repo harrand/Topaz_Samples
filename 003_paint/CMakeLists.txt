@@ -1,4 +1,4 @@
-add_demo(
+add_app(
 	TARGET 003_paint
 	SOURCE_FILES
 		main.cpp

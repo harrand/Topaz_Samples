@@ -1,4 +1,4 @@
-#pragma shader_stage(vertex)
+shader(type = vertex);
 
 vec2 quad_positions[6] = vec2[](
 	vec2(-1.0, -1.0), vec2(1.0, 1.0), vec2(1.0, -1.0),
@@ -34,9 +34,9 @@ resource(id = 1) buffer ObjectData
 	ObjectInfo info[];
 } object_data;
 
-layout(location = 0) out vec2 position;
-layout(location = 1) out vec2 texcoord;
-layout(location = 2) out uint texture_id;
+output(id = 0) vec2 position;
+output(id = 1) vec2 texcoord;
+output(id = 2) uint texture_id;
 
 void main()
 {
@@ -54,7 +54,4 @@ void main()
 	position = position_modelspace;
 	texcoord = texcoord_modelspace;
 	texture_id = this_object_info.texture_id;
-	#if TZ_VULKAN
-		gl_Position.z = (gl_Position.z + gl_Position.w) / 2.0;
-	#endif
 }

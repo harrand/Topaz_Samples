@@ -11,7 +11,7 @@ output(id = 0) vec2 texcoord;
 
 void main()
 {
-	vec2 pos = positions[tz_VertexID];
-	gl_Position = vec4(pos, 0.0, 1.0);
+	vec2 pos = positions[in::vertex_id];
+	out::position = vec4(pos, 0.0, 1.0);
 	texcoord = 0.5 * pos + vec2(0.5);
 }

@@ -40,8 +40,8 @@ output(id = 2) uint texture_id;
 
 void main()
 {
-	uint quad_id = tz_VertexID / 6;
-	uint quad_vertex_id = tz_VertexID % 6;
+	uint quad_id = in::vertex_id / 6;
+	uint quad_vertex_id = in::vertex_id % 6;
 
 	vec2 position_modelspace = quad_positions[quad_vertex_id];
 	vec2 texcoord_modelspace = quad_texcoords[quad_vertex_id];
@@ -50,7 +50,7 @@ void main()
 	mat4 model = this_object_info.model;
 	mat4 mvp = game_data.info.projection * game_data.info.view * model;
 
-	gl_Position = mvp * vec4(position_modelspace, 0.0, 1.0);
+	out::position = mvp * vec4(position_modelspace, 0.0, 1.0);
 	position = position_modelspace;
 	texcoord = texcoord_modelspace;
 	texture_id = this_object_info.texture_id;

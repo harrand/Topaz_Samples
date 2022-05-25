@@ -28,7 +28,7 @@ namespace game
 
 	TextureStorage::Element::Element(const char* path):
 	data(samplelib::read_image(path)),
-	image(tz::gl::ImageResource::from_memory(this->data.format, this->data.dimensions, this->data.image_data, tz::gl::ResourceAccess::StaticFixed))
+	image(tz::gl::ImageResource::from_memory(this->data.format, this->data.dimensions, this->data.image_data, tz::gl::ResourceAccess::StaticFixed, {}))
 	{
 
 	}

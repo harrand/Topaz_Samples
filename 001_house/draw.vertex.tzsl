@@ -1,5 +1,8 @@
 shader(type = vertex);
 
+import <math>
+import <matrix>
+
 struct TriangleVertexData
 {
 	vec3 position;
@@ -52,22 +55,22 @@ mat3 calculate_tbn_matrix(mat4 model_view)
 	vec3 normal_cameraspace = (model_view * vec4(normal, 0.0)).xyz;
 	vec3 tangent_cameraspace = (model_view * vec4(tangent, 0.0)).xyz;
 	// Gramm-schmidt
-	tangent_cameraspace = normalize(tangent_cameraspace - dot(tangent_cameraspace, normal_cameraspace) * normal_cameraspace);
+	tangent_cameraspace = tz::math::normalise(tangent_cameraspace - tz::math::dot(tangent_cameraspace, normal_cameraspace) * normal_cameraspace);
 
-	vec3 bitangent_cameraspace = cross(tangent_cameraspace, normal_cameraspace);
-	return transpose(mat3(tangent_cameraspace, bitangent_cameraspace, normal_cameraspace));
+	vec3 bitangent_cameraspace = tz::math::cross(tangent_cameraspace, normal_cameraspace);
+	return tz::matrix::transpose(mat3(tangent_cameraspace, bitangent_cameraspace, normal_cameraspace));
 }
 
 void main()
 {
-	TriangleVertexData vtx = vertex_data.vertices[tz_VertexID];
+	TriangleVertexData vtx = vertex_data.vertices[in::vertex_id];
 
 	ObjectInfo this_object_info = game_data.info.object_data[vtx.object_id];
 	mat4 model = this_object_info.model;
 	mat4 mvp = game_data.info.projection * game_data.info.view * model;
 
 	position = vtx.position;
-	gl_Position = mvp * vec4(position, 1.0);
+	out::position = mvp * vec4(position, 1.0);
 	texcoord = vtx.texcoord;
 	normal = vtx.normal;
 	tangent = vtx.tangent;

@@ -73,13 +73,21 @@ namespace game
 				return this->idle_texture_id + 2;
 			break;
 			case BipedalImageKeyframe::Down:
-				return this->idle_texture_id + (this->anim_frame_id % 3) + 3;
+			{
+				constexpr int anim_len = 3;
+				unsigned int cur = std::abs((static_cast<int>(this->anim_frame_id) % (anim_len*2)) - anim_len);
+				return this->idle_texture_id + cur + 3;
+			}
 			break;
 			case BipedalImageKeyframe::Up:
-				return this->idle_texture_id + (this->anim_frame_id % 3) + 9;
+			{
+				constexpr int anim_len = 3;
+				unsigned int cur = std::abs((static_cast<int>(this->anim_frame_id) % (anim_len*2)) - anim_len);
+				return this->idle_texture_id + cur + 10;
+			}
 			break;
 			case BipedalImageKeyframe::HorizontalMove:
-				return this->idle_texture_id + (this->anim_frame_id % 3) + 6;
+				return this->idle_texture_id + (this->anim_frame_id % 3) + 7;
 			break;
 			default:
 				tz_error("Unknown bipedal image keyframe. Please submit a bug report.");
@@ -124,11 +132,13 @@ namespace game
 			TextureStorage::Element("../../002_tiles2d/data/images/player/special.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/down_1.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/down_2.png"),
+			TextureStorage::Element("../../002_tiles2d/data/images/player/down_2.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/down_3.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/side_1.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/side_2.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/side_3.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_1.png"),
+			TextureStorage::Element("../../002_tiles2d/data/images/player/up_2.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_2.png"),
 			TextureStorage::Element("../../002_tiles2d/data/images/player/up_3.png"),
 

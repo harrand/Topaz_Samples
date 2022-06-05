@@ -19,6 +19,7 @@ int main()
 		tz::gl::Device dev;
 		tz::gl::Renderer renderer = dev.create_renderer(state.info());
 		tz::Delay fixed_update{16670_us};
+		static bool wireframe_mode_enabled = false;
 		while(!tz::window().is_close_requested())
 		{
 			tz::window().update();
@@ -27,6 +28,17 @@ int main()
 			if(fixed_update)
 			{
 				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(code);};
+				if(is_key_down(tz::KeyCode::Q))
+				{
+					renderer.edit
+					({
+						.render_state_edit = tz::gl::RendererStateEditRequest
+						{
+							.wireframe_mode = wireframe_mode_enabled
+						}
+					});
+					wireframe_mode_enabled = !wireframe_mode_enabled;
+				}
 
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
 				tz::Vec4 cam_pos = mutable_state.camera_pos.with_more(0.0f);

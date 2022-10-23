@@ -1,12 +1,22 @@
 #include "render.hpp"
-#include "gl/imported_shaders.hpp"
-#include "core/matrix_transform.hpp"
+#include "image_import.hpp"
+#include "tz/gl/imported_shaders.hpp"
+#include "tz/core/matrix_transform.hpp"
 
 #include ImportedShaderHeader(draw, vertex)
 #include ImportedShaderHeader(draw, fragment)
 
 namespace game
 {
+	tz::gl::ImageResource make_resource(const samplelib::ImageImportResult& import_result)
+	{
+		return tz::gl::ImageResource::from_memory(import_result.image_data,
+		{
+			.format = import_result.format,
+			.dimensions = import_result.dimensions,
+		});
+	}
+
 	void GameRenderInfo::set_camera(tz::Vec3 cam_pos, tz::Vec3 cam_rot)
 	{
 		this->camera_pos = cam_pos;
@@ -23,25 +33,28 @@ namespace game
 	rinfo(),
 	world_mesh(game::get_world_mesh()),
 	world_buf(tz::gl::BufferResource::from_many(this->world_mesh)),
-	game_buf(tz::gl::BufferResource::from_one(GameRenderInfo{}, tz::gl::ResourceAccess::DynamicFixed)),
+	game_buf(tz::gl::BufferResource::from_one(GameRenderInfo{},
+	{
+		.access = tz::gl::ResourceAccess::DynamicFixed
+	})),
 	stonebricks(game::get_image(game::ImageName::StoneBricks)),
 	stonebricks_normal(game::get_image(game::ImageName::StoneBricks_NormalMap)),
 	stonebricks_parallax(game::get_image(game::ImageName::StoneBricks_ParallaxMap)),
-	stonebricks_res(tz::gl::ImageResource::from_memory(this->stonebricks.format, this->stonebricks.dimensions, this->stonebricks.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	stonebricks_normal_res(tz::gl::ImageResource::from_memory(this->stonebricks_normal.format, this->stonebricks_normal.dimensions, this->stonebricks_normal.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	stonebricks_parallax_res(tz::gl::ImageResource::from_memory(this->stonebricks_parallax.format, this->stonebricks_parallax.dimensions, this->stonebricks_parallax.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
+	stonebricks_res(make_resource(this->stonebricks)),
+	stonebricks_normal_res(make_resource(this->stonebricks_normal)),
+	stonebricks_parallax_res(make_resource(this->stonebricks_parallax)),
 	birch(game::get_image(game::ImageName::Birch)),
 	birch_normal(game::get_image(game::ImageName::Birch_NormalMap)),
 	birch_parallax(game::get_image(game::ImageName::Birch_ParallaxMap)),
-	birch_res(tz::gl::ImageResource::from_memory(this->birch.format, this->birch.dimensions, this->birch.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	birch_normal_res(tz::gl::ImageResource::from_memory(this->birch_normal.format, this->birch_normal.dimensions, this->birch_normal.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	birch_parallax_res(tz::gl::ImageResource::from_memory(this->birch_parallax.format, this->birch_parallax.dimensions, this->birch_parallax.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
+	birch_res(make_resource(this->birch)),
+	birch_normal_res(make_resource(this->birch_normal)),
+	birch_parallax_res(make_resource(this->birch_parallax)),
 	wood(game::get_image(game::ImageName::Wood)),
 	wood_normal(game::get_image(game::ImageName::Wood_NormalMap)),
 	wood_parallax(game::get_image(game::ImageName::Wood_ParallaxMap)),
-	wood_res(tz::gl::ImageResource::from_memory(this->wood.format, this->wood.dimensions, this->wood.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	wood_normal_res(tz::gl::ImageResource::from_memory(this->wood_normal.format, this->wood_normal.dimensions, this->wood_normal.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
-	wood_parallax_res(tz::gl::ImageResource::from_memory(this->wood_parallax.format, this->wood_parallax.dimensions, this->wood_parallax.image_data, tz::gl::ResourceAccess::StaticFixed, {})),
+	wood_res(make_resource(this->wood)),
+	wood_normal_res(make_resource(this->wood_normal)),
+	wood_parallax_res(make_resource(this->wood_parallax)),
 	world_buffer_handle(tz::nullhand),
 	game_buffer_handle(tz::nullhand)
 	{

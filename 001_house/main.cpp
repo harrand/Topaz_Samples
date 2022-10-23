@@ -1,8 +1,8 @@
-#include "core/peripherals/keyboard.hpp"
-#include "core/peripherals/mouse.hpp"
-#include "core/tz.hpp"
-#include "core/matrix_transform.hpp"
-#include "core/time.hpp"
+#include "tz/core/peripherals/keyboard.hpp"
+#include "tz/core/peripherals/mouse.hpp"
+#include "tz/core/tz.hpp"
+#include "tz/core/matrix_transform.hpp"
+#include "tz/core/time.hpp"
 #include "render.hpp"
 
 int main()
@@ -16,30 +16,18 @@ int main()
 		using namespace tz::literals;
 		game::RenderState state;
 		// Create renderer.
-		tz::gl::Device dev;
-		tz::gl::Renderer renderer = dev.create_renderer(state.info());
+		tz::gl::RendererHandle rendererh = tz::gl::device().create_renderer(state.info());
+		tz::gl::Renderer& renderer = tz::gl::device().get_renderer(rendererh);
 		tz::Delay fixed_update{16670_us};
 		static bool wireframe_mode_enabled = false;
 		while(!tz::window().is_close_requested())
 		{
-			tz::window().update();
+			tz::window().begin_frame();
 			renderer.render(state.get_triangle_count());
 			// Fixed update of 60 per second (16.67ms == 16670us).
 			if(fixed_update)
 			{
 				auto is_key_down = [](tz::KeyCode code){return tz::window().get_keyboard_state().is_key_down(code);};
-				if(is_key_down(tz::KeyCode::Q))
-				{
-					renderer.edit
-					({
-						.render_state_edit = tz::gl::RendererStateEditRequest
-						{
-							.wireframe_mode = wireframe_mode_enabled
-						}
-					});
-					wireframe_mode_enabled = !wireframe_mode_enabled;
-				}
-
 				game::GameRenderInfo& mutable_state = state.get_mutable_state(renderer);
 				tz::Vec4 cam_pos = mutable_state.camera_pos.with_more(0.0f);
 				tz::Vec3 cam_rot = mutable_state.camera_rot;
@@ -92,6 +80,7 @@ int main()
 				#endif
 				fixed_update.reset();
 			}
+			tz::window().end_frame();
 		}
 	}
 	tz::terminate();

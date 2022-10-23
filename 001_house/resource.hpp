@@ -2,8 +2,8 @@
 #define SAMPLE_001_HOUSE_RESOURCES_HPP
 #include "image_import.hpp" // samplelib
 #include "model_import.hpp" // samplelib
-#include "core/vector.hpp"
-#include "core/matrix.hpp"
+#include "tz/core/vector.hpp"
+#include "tz/core/matrix.hpp"
 #include <vector>
 #include <array>
 

@@ -1,7 +1,7 @@
 #ifndef TOPAZ_SAMPLES_SAMPLELIB_IMAGE_IMPORT_HPP
 #define TOPAZ_SAMPLES_SAMPLELIB_IMAGE_IMPORT_HPP
-#include "core/vector.hpp"
-#include "gl/declare/image_format.hpp"
+#include "tz/core/vector.hpp"
+#include "tz/gl/declare/image_format.hpp"
 #include <cstddef>
 #include <vector>
 

@@ -1,9 +1,9 @@
 #ifndef TOPAZ_SAMPLES_HOUSE_RENDER_HPP
 #define TOPAZ_SAMPLES_HOUSE_RENDER_HPP 
-#include "gl/renderer.hpp"
-#include "gl/device.hpp"
-#include "gl/resource.hpp"
-#include "core/matrix.hpp"
+#include "tz/gl/renderer.hpp"
+#include "tz/gl/device.hpp"
+#include "tz/gl/resource.hpp"
+#include "tz/core/matrix.hpp"
 
 #include "image_import.hpp"
 #include "resource.hpp"

@@ -1,7 +1,7 @@
 #ifndef TOPAZ_SAMPLES_SAMPLELIB_MODEL_IMPORT_HPP
 #define TOPAZ_SAMPLES_SAMPLELIB_MODEL_IMPORT_HPP
-#include "core/vector.hpp"
-#include "core/containers/basic_list.hpp"
+#include "tz/core/vector.hpp"
+#include "tz/core/containers/basic_list.hpp"
 
 namespace samplelib
 {

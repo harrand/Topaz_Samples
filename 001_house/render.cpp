@@ -37,6 +37,10 @@ namespace game
 	{
 		.access = tz::gl::ResourceAccess::DynamicFixed
 	})),
+	tonemapping_buf(tz::gl::BufferResource::from_one(ToneMappingInfo{},
+	{
+		.access = tz::gl::ResourceAccess::DynamicFixed
+	})),
 	stonebricks(game::get_image(game::ImageName::StoneBricks)),
 	stonebricks_normal(game::get_image(game::ImageName::StoneBricks_NormalMap)),
 	stonebricks_parallax(game::get_image(game::ImageName::StoneBricks_ParallaxMap)),
@@ -56,7 +60,8 @@ namespace game
 	wood_normal_res(make_resource(this->wood_normal)),
 	wood_parallax_res(make_resource(this->wood_parallax)),
 	world_buffer_handle(tz::nullhand),
-	game_buffer_handle(tz::nullhand)
+	game_buffer_handle(tz::nullhand),
+	tonemapping_buffer_handle(tz::nullhand)
 	{
 		tz_assert(stonebricks.success && birch.success && wood.success, "Failed to load one or more game images (Stonebricks = %d, Birch = %d, Wood = %d)", stonebricks.success, birch.success, wood.success);
 
@@ -64,6 +69,8 @@ namespace game
 		this->rinfo.shader().set_shader(tz::gl::ShaderStage::Fragment, ImportedShaderSource(draw, fragment));
 		this->world_buffer_handle = this->rinfo.add_resource(this->world_buf);
 		this->game_buffer_handle = this->rinfo.add_resource(this->game_buf);
+		this->tonemapping_buffer_handle = this->rinfo.add_resource(this->tonemapping_buf);
+
 		this->rinfo.add_resource(this->stonebricks_res);
 		this->rinfo.add_resource(this->birch_res);
 		this->rinfo.add_resource(this->wood_res);
@@ -88,5 +95,10 @@ namespace game
 	GameRenderInfo& RenderState::get_mutable_state(tz::gl::Renderer& renderer)
 	{
 		return renderer.get_resource(this->game_buffer_handle)->data_as<GameRenderInfo>().front();
+	}
+
+	ToneMappingInfo& RenderState::get_lighting_state(tz::gl::Renderer& renderer)
+	{
+		return renderer.get_resource(this->tonemapping_buffer_handle)->data_as<ToneMappingInfo>().front();
 	}
 }

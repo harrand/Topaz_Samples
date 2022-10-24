@@ -41,7 +41,7 @@ namespace game
 			break;
 
 		}
-		return samplelib::read_image(filename);
+		return samplelib::read_float_image(filename);
 	}
 
 	NaiveMesh get_world_mesh()

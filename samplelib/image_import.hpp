@@ -16,6 +16,7 @@ namespace samplelib
 	};
 
 	ImageImportResult read_image(const char* relative_path);
+	ImageImportResult read_float_image(const char* relative_path);
 }
 
 #endif // TOPAZ_SAMPLES_SAMPLELIB_IMAGE_IMPORT_HPP

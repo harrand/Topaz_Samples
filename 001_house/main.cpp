@@ -3,6 +3,7 @@
 #include "tz/core/tz.hpp"
 #include "tz/core/matrix_transform.hpp"
 #include "tz/core/time.hpp"
+#include "tz/dbgui/dbgui.hpp"
 #include "render.hpp"
 
 int main()
@@ -19,11 +20,31 @@ int main()
 		tz::gl::RendererHandle rendererh = tz::gl::device().create_renderer(state.info());
 		tz::gl::Renderer& renderer = tz::gl::device().get_renderer(rendererh);
 		tz::Delay fixed_update{16670_us};
-		static bool wireframe_mode_enabled = false;
+		bool game_menu_enabled = false;
+
+		tz::dbgui::game_menu().add_callback([&game_menu_enabled]()
+		{
+			ImGui::MenuItem("Sample Info", nullptr, &game_menu_enabled);
+		});
+
+
 		while(!tz::window().is_close_requested())
 		{
 			tz::window().begin_frame();
 			renderer.render(state.get_triangle_count());
+
+			tz::dbgui::run([&state, &renderer, &game_menu_enabled]()
+			{
+				if(game_menu_enabled)
+				{
+					ImGui::Begin("Sample Info", &game_menu_enabled);
+					ImGui::DragFloat("Reinhard Constant", &state.get_lighting_state(renderer).mapping_constant, 0.01f, 0.0f, 5.0f);
+					ImGui::DragFloat("Gamma", &state.get_lighting_state(renderer).gamma, 0.01f, 0.0f, 50.0f);
+					ImGui::DragFloat4("Light Wattage", state.get_lighting_state(renderer).light_powers.data().data());
+					ImGui::End();
+				}
+			});
+
 			// Fixed update of 60 per second (16.67ms == 16670us).
 			if(fixed_update)
 			{
@@ -64,7 +85,7 @@ int main()
 				}
 				static tz::Vec2i mouse_position;
 				auto mpi = static_cast<tz::Vec2i>(tz::window().get_mouse_position_state().get_mouse_position());
-				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::MouseButton::Left))
+				if(tz::window().get_mouse_button_state().is_mouse_button_down(tz::MouseButton::Left) && !tz::dbgui::claims_mouse())
 				{
 					// Get mouse delta since last frame.
 					tz::Vec2i mouse_delta = mpi - mouse_position;

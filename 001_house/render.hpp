@@ -26,6 +26,14 @@ namespace game
 		void update_dimensions(tz::Vec2 viewport_dimensions);
 	};
 
+	struct ToneMappingInfo
+	{
+		float mapping_constant = 1.0f;
+		float gamma = 2.0f;
+		float padding[2];
+		tz::Vec4 light_powers{1.0f, 1.0f, 1.0f, 1.0f};
+	};
+
 	class RenderState
 	{
 	public:
@@ -33,11 +41,13 @@ namespace game
 		const tz::gl::RendererInfo& info() const;
 		std::size_t get_triangle_count() const;
 		GameRenderInfo& get_mutable_state(tz::gl::Renderer& renderer);
+		ToneMappingInfo& get_lighting_state(tz::gl::Renderer& renderer);
 	private:
 		tz::gl::RendererInfo rinfo;
 		game::NaiveMesh world_mesh;
 		tz::gl::BufferResource world_buf;
 		tz::gl::BufferResource game_buf;
+		tz::gl::BufferResource tonemapping_buf;
 		samplelib::ImageImportResult stonebricks;
 		samplelib::ImageImportResult stonebricks_normal;
 		samplelib::ImageImportResult stonebricks_parallax;
@@ -58,6 +68,7 @@ namespace game
 		tz::gl::ImageResource wood_parallax_res;
 		tz::gl::ResourceHandle world_buffer_handle;
 		tz::gl::ResourceHandle game_buffer_handle;
+		tz::gl::ResourceHandle tonemapping_buffer_handle;
 	};
 }
 
